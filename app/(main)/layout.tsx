@@ -9,6 +9,8 @@ import React, { useEffect, useState } from "react";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation';
 
+import { Sling as Hamburger } from 'hamburger-react';
+
 
 const side = [
   { icon: <MdDashboard className="mr-4" />, title: "Dashboard" },
@@ -20,11 +22,12 @@ const side = [
   { icon: <MdEmojiEmotions className="mr-4" />, title: "Emotional Analysis" },
 ];
 
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const { isSignedIn, isLoaded,user } = useUser();
-
+  const [isOpen, setOpen] = useState(true);
   useEffect(() => {
     if (isLoaded) {
       if (isSignedIn) {
@@ -43,26 +46,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   if (!isLoaded || !isSignedIn) {
     return <div className="flex justify-center items-center h-screen">Redirecting...</div>;
   }
+
+//   {isOpen && (
   
-  console.log('hello');
+  
   return (
     
     
         <div className="w-full h-screen flex">
+           
+            
           {/* Sidebar */}
-          <div className="w-1/4 h-full bg-white ">
-            <div className="flex h-32 justify-center items-center">
-              <Image
-                src="/assets/icon.png"
-                className="mr-2"
-                width={40}
-                height={40}
-                alt="logo"
-              />
-              <h1 className="font-gsans font-bold md:text-3xl text-xl">
-                AetherMinds
-              </h1>
-            </div>
+          <div className={`min-[320px]:w-full  min-[320px]: lg:w-1/4 lg:h-full flex  bg-white duration-300 ${ !isOpen&& 'min-[320px]:w-0 lg:w-0 opacity-0 '}`}>
+            <div>
+                <div className="flex h-32 px-8 justify-between items-center">
+                        <div className="flex h-32 justify-center items-center">
+                            <Image
+                            src="/assets/icon.png"
+                            className="mr-2"
+                            width={40}
+                            height={40}
+                            alt="logo"/>
+                            <h1 className="font-gsans font-bold md:text-3xl text-xl">
+                                AetherMinds
+                            </h1>
+                        </div>
+                </div>
             <div className="p-14">
               {side.map((sideitem) => (
                 <Link
@@ -76,7 +85,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ))}
             </div>
           </div>
-         
+            
+          </div>
+          
+          <div className=" h-full text-center min-[320px]:p-2 bg-white  p-5 ">
+              <Hamburger toggled={isOpen} toggle={setOpen} />
+          </div>
 
           <div className="flex-1 bg-[#C9DCEE] flex flex-col">
             <div className='flex  items-center justify-around w-full h-24 px-6 '>
@@ -90,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <FaBell className="text-2xl cursor-pointer text-gray-600 hover:text-gray-800" />
                 <div className="flex items-center space-x-4">
                   <UserButton />
-                  <Link href='/profile' className="font-semibold text-2xl text-gray-800 flex items-center">
+                  <Link href='/profile' className="font-semibold hidden min-[425px]:block text-2xl text-gray-800 flex items-center">
                     {user.fullName}
                   </Link>
                 </div>
