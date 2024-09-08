@@ -92,7 +92,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Hamburger toggled={isOpen} toggle={setOpen} />
           </div>
 
-          <div className="flex-1 bg-[#C9DCEE] flex flex-col">
+          <div  className="flex-1 bg-[#C9DCEE] p-4 flex flex-col">
             <div className='flex  items-center justify-around w-full h-24 px-6 '>
               <input
                 type="text"

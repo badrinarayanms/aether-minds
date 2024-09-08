@@ -10,6 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.4.1",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.0.2",
+    "@mui/material": "^6.0.2",
+    "axios": "^1.7.7",
+    "firebase": "^10.13.1",
     "hamburger-react": "^2.5.1",
     "next": "14.2.8",
     "react": "^18",
