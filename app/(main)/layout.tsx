@@ -8,7 +8,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { useRouter } from 'next/navigation';
-import { User } from "@clerk/nextjs/server";
+
 
 const side = [
   { icon: <MdDashboard className="mr-4" />, title: "Dashboard" },
