@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from 'react';
-
-import Image from 'next/image';
 import Achievement from '@/components/Achievement';
 
 // Define the type for the goal

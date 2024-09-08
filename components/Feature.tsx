@@ -1,5 +1,5 @@
 import React from 'react'
-export type ftype={title:String,desc:String}
+export type ftype={title:string,desc:string}
 const Feature = ({title,desc}:ftype) => {
   
   return (
