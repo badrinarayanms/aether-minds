@@ -12,11 +12,11 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
-export const metadata = {
+export const metadata:Metadata = {
   title: "AetherMinds",
   description: "Elevate learning and well-being to a higher plane, where academic success meets mental clarity.",
 };
+
 
 export default function RootLayout({
   children,
