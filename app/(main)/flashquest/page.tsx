@@ -33,10 +33,10 @@ import { db } from "@/firebase";
 
 import EditIcon from "@mui/icons-material/Edit";
 
-interface Flashcard {
-  front: string;
-  back: string;
-}
+type Flashcard = {
+    front?: string;
+    back?: string;  
+  };
 
 interface Deck {
   name: string;
@@ -391,7 +391,7 @@ export default function Dashboard() {
             type="text"
             fullWidth
             value={editingCard?.back || ''}
-            onChange={(e) => setEditingCard({ ...editingCard, back: e.target.value })}
+            onChange={(e) => setEditingCard({ ...editingCard, back: e.target.value})}
           />
         </DialogContent>
         <DialogActions>
