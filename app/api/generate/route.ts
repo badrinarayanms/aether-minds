@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import axios from 'axios'; 
 
 const systemPrompt = `You are a flashcard creator. Your task is to generate concise and effective flashcards that facilitate learning and retention of information. Each flashcard should:
@@ -21,7 +21,7 @@ Return in the following JSON format:
     }]
 }`;
 
-export async function POST(req: { text: () => any; }) {
+export async function POST(req:NextRequest) {
     const data = await req.text();
 
     try {

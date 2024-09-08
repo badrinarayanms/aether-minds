@@ -4,10 +4,10 @@ import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 import {
-  Grid,
+  
   Button,
   Container,
-  Box,
+  
   Typography,
   Card,
   CardContent,
@@ -28,9 +28,9 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase";
 
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import MailIcon from "@mui/icons-material/Mail";
+
+
+
 import EditIcon from "@mui/icons-material/Edit";
 
 interface Flashcard {
@@ -56,11 +56,7 @@ export default function Dashboard() {
   const [f, setf] = useState<boolean>(false);
   const { user } = useUser();
 
-  useEffect(() => {
-    if (user) {
-      fetchUserDecks();
-    }
-  }, [user]);
+  
 
   const fetchUserDecks = async () => {
     if (!user) return;
@@ -71,7 +67,11 @@ export default function Dashboard() {
       setUserDecks(collections);
     }
   };
-
+  useEffect(() => {
+    if (user) {
+      fetchUserDecks();
+    }
+  }, [user, fetchUserDecks]); 
   const handleSubmit = async () => {
     setIsGenerating(true);
     try {
@@ -122,7 +122,7 @@ export default function Dashboard() {
 
   const handleEditDialogSave = () => {
     if (editingCard) {
-      const updatedFlashcards = flashcards.map((card, index) =>
+      const updatedFlashcards = flashcards.map((card) =>
         card === editingCard ? { ...editingCard } : card
       );
       setFlashcards(updatedFlashcards);
@@ -181,7 +181,7 @@ export default function Dashboard() {
     setFlashcards([]);
     fetchUserDecks();
   };
-  const transformStyle = f ? 'rotateY(90deg)' : 'rotateY(0deg)';
+  
   return (
     <div className="h-full rounded-xl bg-gray-100">
       
@@ -200,7 +200,7 @@ export default function Dashboard() {
   }} >
                 
             <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6 mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl text-[#00517A] font-gsans font-bold mb-4">
                 Generate New Flashcards
               </h2>
               <textarea
@@ -210,18 +210,13 @@ export default function Dashboard() {
                 className="w-full p-2 border border-gray-300 rounded-md mb-4"
                 rows={4}
               />
-              <button
-                onClick={handleSubmit}
-                className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
-                disabled={isGenerating}
-              >
-                {isGenerating ? "Generating..." : "Generate Flashcards"}
-              </button>
+              <button onClick={handleSubmit} disabled={isGenerating} className="font-gsans md:font-medium text-white md:text-xl  px-4 py-2 font-bold text-sm rounded-lg bg-Aether hover:opacity-90 transition-opacity duration-300">{isGenerating ? "Generating..." : "Generate Flashcards"}</button>
+              
             </div>
 
             {flashcards.length > 0 && (
               <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl text-[#00517A] font-gsans font-bold mb-4">
                   Flashcards Preview
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -240,7 +235,7 @@ export default function Dashboard() {
                         }}
                       >
                         <div className="absolute inset-0 backface-hidden">
-                          <div className="w-full h-full flex items-center justify-center bg-purple-100   shadow rounded-md p-4">
+                          <div className="w-full h-full flex text-[#00517A] font-gsans font-bold items-center justify-center bg-[#C9DCEE]    shadow rounded-md p-4">
                             <Typography  component="div">
                               {flashcard.back}
                             </Typography>
@@ -252,7 +247,7 @@ export default function Dashboard() {
                             transform: `rotateY(${flipped[index] ? '0deg' : '0deg'})`,transformStyle: 'preserve-3d',
                           }}
                         >
-                          <div className="w-full h-full flex items-center justify-center bg-white duration-500 hover:opacity-0 shadow rounded-md p-4">
+                          <div className="w-full h-full flex items-center text-[#00517A] font-gsans font-bold justify-center bg-white duration-500 hover:opacity-0 shadow rounded-md p-4">
                             <Typography variant="h6" component="div">
                             {flashcard.front}
                             </Typography>
@@ -278,7 +273,7 @@ export default function Dashboard() {
                   />
                   <button
                     onClick={saveFlashcards}
-                    className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+                    className="font-gsans md:font-medium text-white md:text-xl  px-5 py-3 font-bold text-sm rounded-lg bg-Aether hover:opacity-90 transition-opacity duration-300"
                   >
                     Save Deck
                   </button>
@@ -288,7 +283,7 @@ export default function Dashboard() {
 
             {userDecks.length > 0 && (
               <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl text-[#00517A] font-gsans font-bold mb-4">
                   Your Decks
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -313,7 +308,7 @@ export default function Dashboard() {
 
             {selectedDeck && (
               <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6 mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl text-[#00517A] font-gsans font-bold mb-4">
                   {selectedDeck} Flashcards
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -327,7 +322,7 @@ export default function Dashboard() {
         transition: 'transform 0.5s',
       }}
     >
-      <div className="w-full h-full flex items-center justify-center bg-purple-100 shadow rounded-md p-4">
+      <div className="w-full h-full flex items-center text-[#00517A] font-gsans font-bold justify-center bg-[#C9DCEE]  shadow rounded-md p-4">
         <Typography component="div">
           {flashcard.back}
         </Typography>
@@ -341,7 +336,7 @@ export default function Dashboard() {
         transition: 'transform 0.5s',
       }}
     >
-      <div  style={{transform: 'rotateY(0deg)',transformStyle: 'preserve-3d',}} className="w-full h-full flex items-center justify-center bg-white duration-500  hover:opacity-0 shadow rounded-md p-4"  >
+      <div  style={{transform: 'rotateY(0deg)',transformStyle: 'preserve-3d',}} className="w-full h-full text-[#00517A] font-gsans font-bold flex items-center justify-center bg-white duration-500  hover:opacity-0 shadow rounded-md p-4"  >
         <Typography component="div">
           {flashcard.front}
         </Typography>
@@ -355,7 +350,7 @@ export default function Dashboard() {
             )}
 
             <div className="bg-white shadow overflow-hidden sm:rounded-lg p-6 mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl text-[#00517A] font-gsans font-bold mb-4">
                 Save Flashcards to a New Deck
               </h2>
               <TextField
@@ -372,6 +367,7 @@ export default function Dashboard() {
                 color="primary"
                 fullWidth
                 disabled={!flashcards.length || isGenerating}
+                className="font-gsans md:font-medium text-white md:text-xl  px-4 py-2 font-bold text-sm rounded-lg bg-Aether hover:opacity-90 transition-opacity duration-300"
               >
                 Save Flashcards
               </Button>
