@@ -11,15 +11,18 @@ const features:ftype[]=[{title:"Emotion Analysis Warning",desc:"Real-time detect
 const page = () => {
   return (
     <div className="w-full h-full">
-      <div className="flex justify-between py-4 border-b-2 items-center md:px-14 px-5 md:py-7 ">
-        <div className="flex justify-between items-center" >
-            <Image src='/assets/icon.png'  className="mr-2" width={40}  height={40} alt="logo"></Image>
-            <h1 className=" font-gsans font-bold  md:text-3xl text-xl">AetherMinds</h1>
-        </div>
-        <div className="items-center">
-            <Link href='/dashboard'><button className="font-gsans md:font-medium text-white md:text-xl md:px-6 py-2 px-4 font-bold text-sm rounded-lg bg-Aether hover:opacity-90 transition-opacity duration-300">Get Started</button></Link>
-            </div>
-    </div>
+       <div className="flex justify-between py-4 border-b-2 items-center md:px-14 px-5 md:py-7 ">
+      <div className="flex justify-between items-center" >
+          <Image src='/assets/icon.png'  className="mr-2" width={40}  height={40} alt="logo"></Image>
+          <h1 className=" font-gsans font-bold  md:text-3xl text-xl">AetherMinds</h1>
+      </div>
+      <div className="items-center">
+      <div className="flex gap-5 items-center">
+          <Link href='/sign-in'><button className="font-gsans md:font-medium text-white md:text-xl md:px-6 py-2 px-4 font-bold text-sm rounded-lg bg-Aether hover:opacity-90 transition-opacity duration-300">Login</button></Link>
+          <Link href='/sign-up'><button className="font-gsans md:font-medium text-white md:text-xl md:px-6 py-2 px-4 font-bold text-sm rounded-lg bg-Aether hover:opacity-90 transition-opacity duration-300">Sign up</button></Link>
+      </div>
+      </div>
+  </div>
     <div className=" bg-[url('/assets/grid.png')] bg-cover bg-center bg-no-repeat  mb-0  h-screen w-full text-center">
         <div className="h-full flex flex-col justify-center items-center">
             <h1 className="min-[320px]:text-5xl font-gsans font-bold text-6xl -mt-[12rem]  md:text-8xl xl:text-9xl">AetherMinds</h1>

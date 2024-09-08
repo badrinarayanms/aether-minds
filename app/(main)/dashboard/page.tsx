@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Achievement from '@/components/Achievement';
+import { useUser } from '@clerk/nextjs';
 
 // Define the type for the goal
 interface Goal {
@@ -10,6 +11,7 @@ interface Goal {
 }
 
 export default function Page() {
+    const { user } = useUser()
   // Use the Goal type for the state
   const [goals, setGoals] = useState<Goal[]>([
     { day: 'Mon', goal: 'Solve 5 Algebra problems.', completed: false },
@@ -28,7 +30,7 @@ export default function Page() {
   return (
     <div className="w-full h-full p-10 m-0">
       <div className="">
-        <h1 className='text-5xl text-[#00517A] font-gsans font-bold'>Welcome back, Badri!</h1>
+        <h1 className='text-5xl text-[#00517A] font-gsans font-bold'>Welcome back, {user?.fullName}!</h1>
       </div>
       <div className='w-full flex h-full py-10'>
         <div className='w-3/4 h-full mr-10'>

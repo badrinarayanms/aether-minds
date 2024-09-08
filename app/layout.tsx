@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ClerkProvider,ClerkLoaded,ClerkLoading } from '@clerk/nextjs'
+import Image from "next/image";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,22 +21,22 @@ export const metadata:Metadata = {
 };
 
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <head>
 
       <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
+          
+      
+     
         {children}
+        
       </body>
     </html>
+    </ClerkProvider>
   );
 }
