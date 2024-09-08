@@ -43,18 +43,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   if (!isLoaded || !isSignedIn) {
     return <div className="flex justify-center items-center h-screen">Redirecting...</div>;
   }
-
+  
+  console.log('hello');
   return (
-    <html lang="en">
-      <head>
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/assets/favicon.png"
-        />
-      </head>
-      <body>
+    
+    
         <div className="w-full h-screen flex">
           {/* Sidebar */}
           <div className="w-1/4 h-full bg-white ">
@@ -83,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ))}
             </div>
           </div>
+         
 
           <div className="flex-1 bg-[#C9DCEE] flex flex-col">
             <div className='flex  items-center justify-around w-full h-24 px-6 '>
@@ -108,7 +102,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </div>
-      </body>
-    </html>
+      
   );
 }
